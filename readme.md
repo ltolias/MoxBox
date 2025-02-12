@@ -81,6 +81,8 @@ If you want to use a single rootca for multiple moxbox devices, see: <a href="#s
 
 <br/>
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## Usage and Technical Details
 
@@ -110,7 +112,6 @@ you will be able to stream frames from OVxxxx series cameras.  Note that you'll 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<br/>
 
 ### History
 <img src="images/history.png" width="40%" align="right" />
@@ -138,12 +139,8 @@ With older data being eventually discarded, so as to allow a high resolution loo
 The webapp caches all data it receives, allowing for offline viewing and will update itself in the background when it can find your Moxbox.  This data is stored in IndexedDB, with fallbacks to WebSQL and localStorage, with the accordant max data size limitations and possibility of your device randomly deleting the data.
 
 <br/>
-<br/>
-<br/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<br/>
 
 ### Peers
 <img src="images/peers.png" width="40%" align="right" />
@@ -159,31 +156,23 @@ When you set a new target, your origin will remain moxbox.local and requests wil
 
 If you have multiple MoxBoxes on a network, they will all compete over mDNS to serve moxbox.local.  This race seems to resolve into stable assignments of moxbox.local, moxbox-1.local, etc, with another host picking up moxbox.local if the primary goes down, but this could vary by network.
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/><br/>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<br/>
 
 ### Settings
 
 Device and Webapp settings, plus an activity monitor.
 
-<img src="images/Settings.png" width="49%" align="left" />
-<img src="images/Activity.png" width="49%" align="left" />
+<img src="images/settings.png" width="47%" align="left" />
+<img src="images/activity.png" width="47%" align="left" />
 
-<br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<br/>
 
 ### OTA Updates
 To send OTA firmware updates to your moxbox:
@@ -250,7 +239,7 @@ curl --progress-bar -X POST --data-binary @build/certs.bin http://moxbox.local/o
 <!-- LICENSE -->
 ## License
 
-Distributed under the GPL-V3 license in `LICENSE.txt`.
+Distributed under the GPL-V3 license in `LICENSE.md`.
 
 <br/>
 
