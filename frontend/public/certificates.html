@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        button {
+            width: 300px;
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h3>MoxBox Certificate Manager</h3>
+    <label>
+        <span> Yesterday's date </span>
+        <input type="date" id="yesterdays_date">
+    </label>
+    <div style="height: 50px;"> </div>
+    <span> Ensure yesterday's date is correct before generating a new rootca!</span>
+    <button onclick="generate_cert()">Generate Root Certificate</button>
+    <div style="height: 25px; width: 100%;"> </div>
+    <a href="/ca_cert" download="moxbox-rootca.crt">
+        <button type="button">Download Root Certificate</button>
+    </a>
+    <div style="height: 25px; width: 100%;"> </div>
+    <button type="button" onclick="restart_device()">Restart Device</button>
+    
+    <script>
+        const today = new Date()
+        var yesterday = new Date(new Date().setDate(today.getDate() - 1));
+        document.getElementById('yesterdays_date').value = yesterday.toISOString().split('T')[0];
+        async function generate_cert() {
+            const [year, month, day] = document.getElementById("yesterdays_date").value.split('-')
+            const response = await fetch('/generate_rootca?' + new URLSearchParams({year, month, day}).toString())
+            const text = await response.text() 
+            alert("Device responded: " + text)
+        }
+        async function restart_device() {
+            const response = await fetch('/restart')
+            const text = await response.text() 
+            alert("Device responded: " + text)
+        }
+    </script>
+</body>
+</html>

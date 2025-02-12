@@ -1,0 +1,257 @@
+:root {
+  background-color: rgb(0,0,0);
+  color:  rgb(240,240,240);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+
+  --pane-color: rgb(20,20,20);
+  --pane-border-color: rgb(100,100,100);
+
+  --color-light: rgb(35, 35, 35);
+  --color-dark: rgb(10, 10, 10);
+
+  --active-border-color: rgb(171, 171, 171);
+  
+  --active-background-color: rgb(50,50,50);
+
+}
+
+body {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+.tab-container {
+  margin: 10px;
+  border-radius: 5px;
+  width: min(700px, calc(100vw - 20px));
+  min-width: 365px; /* why does chrome restrict custom device widths to 390, but iphone se is 375? */
+}
+.tab-bar {
+  margin: 1px;
+  border-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: var(--pane-color); 
+  border: 1px solid var(--pane-border-color);
+}
+.tab-button {
+  width: 25%;
+  padding: 5px;
+  font-size: .9em;
+  font-weight: 500;
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.active-tab-button {
+  border-bottom: solid;
+  border-color: var(--active-border-color);
+}
+.tab-content {
+  background-color: transparent;
+  height: calc(100vh - 120px);
+  height: calc(100dvh - 120px); /* deals with ios safari url bar */
+  display: flex; 
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+}
+
+.light {
+  background-color: var(--color-light);
+}
+.dark {
+  background-color: var(--color-dark);
+}
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.pane {
+    margin: 1px;
+    border-radius: 5px;
+    background-color: var(--pane-color); ;
+    border: 1px solid var(--pane-border-color);
+}
+.top-pane {
+  margin-top: 8px;
+}
+.bottom-pane {
+  margin-bottom: 10px;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.wrap-container {
+  gap: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.justify-left {
+  justify-content: left;
+}
+.justify-right {
+  justify-content: right;
+}
+
+.input-container {
+  height: 40px;
+  border-radius: 5px;
+  border: transparent;
+  justify-items: center;
+  font-size: .9em;
+  font-weight: 400;
+  outline: 1px solid var(--pane-border-color);
+}
+.input-container:hover {
+  outline: 1px solid var(--active-border-color);
+}
+
+.input-divider{
+  width: 0px;
+  border: solid 1px var(--pane-border-color);
+}
+
+.input-label {
+  padding-right: 5px;
+  padding-left: 5px;
+  align-content: center;
+  border: none;
+  width: 100px;
+  font-size: .9em;
+  font-weight: 400;
+  align-items: center;
+}
+.label-narrow {
+  width: 88px;
+}
+
+input, button {
+  box-sizing: border-box;
+  border: none;
+  height: 100%;
+  text-align: center;
+  align-self: center;
+  background: none;
+  font-size: .9em;
+  font-weight: 400;
+  color: inherit;
+}
+
+button {
+  padding-left: 5px;
+  padding-right: 5px; 
+  width: 130px;
+}
+
+input[type='text'], input[type='number'] {
+  width: 160px;
+  padding-left: 5px;
+  padding-right: 5px; 
+}
+
+
+
+.mcu-info {
+  margin-top: -10px;
+  padding: 0px 20px 0px 20px; 
+  text-align: left; 
+  white-space: pre-wrap; 
+  word-break: keep-all; 
+  font-size: 0.4em;
+}
+
+.frame-container {
+  width: min(96%, 500px);
+  margin-bottom: 10px;
+}
+.frame {
+  background-color: var(--color-dark);
+  /* FRAMESIZE_SXGA,     // 1280x1024
+  FRAMESIZE_UXGA,     // 1600x1200 */
+  aspect-ratio: 1280 / 1024;
+  border-radius: 10px;
+  transform: rotate(180deg);
+}
+.cat {
+  -webkit-filter:brightness(60%);
+  -moz-filter:brightness(60%);
+  filter:brightness(60%);
+}
+.graph-pane {
+  height: calc(100vh - 275px);
+  height: calc(100dvh - 275px); /* deals with ios safari url bar */
+}
+.chart {
+  padding:10px;
+}
+h4 {
+  margin: 5px;
+}
+
+.checkbox-with-label {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  height: 25px;
+}
+.checkbox-container {
+  width: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.checkbox-box {
+  outline: 1px solid var(--pane-border-color);
+  width: 11px;
+  height: 11px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: var(--color-dark);
+  margin: auto;
+  font: inherit;
+  width: 10px;
+  border-radius: 1px;
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  background-color: var(--active-border-color);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

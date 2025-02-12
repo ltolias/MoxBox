@@ -1,0 +1,36 @@
+{
+  "short_name": "MoxBox",
+  "name": "Moxette",
+  "scope": "/",
+  "start_url": "/",
+  "description": "Never forget a thing.",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+      }
+  ],
+  "display": "fullscreen",
+  "theme_color": "#242424",
+  "background_color": "#242424",
+  "splash_pages": null
+}
