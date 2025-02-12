@@ -176,8 +176,8 @@ If you have multiple MoxBoxes on a network, they will all compete over mDNS to s
 
 Device and Webapp settings, plus an activity monitor.
 
-<img src="images/Settings.png" width="50%" align="left" />
-<img src="images/Activity.png" width="50%" align="right" />
+<img src="images/Settings.png" width="49%" align="left" />
+<img src="images/Activity.png" width="49%" align="left" />
 
 <br/>
 
