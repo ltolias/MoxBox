@@ -97,9 +97,8 @@ void RealTimeTask( void * pvParameters ){
 
     QueueHandle_t timer_queue = xQueueCreate(128, sizeof(timer_event_t));
     
-    initialize_realtime_inputs();
+    initialize_realtime_inputs(COLLECTED_DATA_COUNT);
  
-
     timer_setup(ISR_INTERVAL_US, timer_queue);
     
     char * collected_data_names[] = COLLECTED_DATA_NAMES;
@@ -114,11 +113,6 @@ void RealTimeTask( void * pvParameters ){
         collected_data_loop_accum[i] = 0;
         num_accumulated_loop[i] = 0;
     }
-    #ifdef FAKE_DATA
-    double fake_data[2];
-    fake_data[0] = 0;
-    fake_data[1] = 0;
-    #endif
 
     while (1) {  
         if (xQueueReceive(ipc_control_queue->get_queue(), &evt_ipc_control, 0)) 
@@ -152,24 +146,11 @@ void RealTimeTask( void * pvParameters ){
 
             if (num_accumulated_loop[evt_timer.data_index] >= DATA_IPC_INTERVAL_MS / SAMPLE_INTERVAL_MS) {
                 
-                #ifdef FAKE_DATA
-                fake_data[evt_timer.data_index] += (((double)random(100))/25.0) - 2.0;
-                if (fake_data[evt_timer.data_index] <= 0) {
-                    fake_data[evt_timer.data_index] = 0;
-                }
-                if (fake_data[evt_timer.data_index] >= 50) {
-                    fake_data[evt_timer.data_index] = 50;
-                }
-                #endif
 
                 ipc_event_t evt_ipc = { 
                     .name = collected_data_names[evt_timer.data_index], 
                     .time_us=evt_timer.time_us, 
-                    #ifdef FAKE_DATA
-                    .value= fake_data[evt_timer.data_index],
-                    #else
                     .value= collected_data_loop_accum[evt_timer.data_index] / num_accumulated_loop[evt_timer.data_index], 
-                    #endif
                     .data_ipc_interval_ms=DATA_IPC_INTERVAL_MS
                 };
                 xQueueSend(ipc_data_queue, &evt_ipc, 0);

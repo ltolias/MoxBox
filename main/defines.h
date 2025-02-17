@@ -12,12 +12,11 @@
 // #define FEATURE_USER_RELAY
 
 #define FEATURE_REALTIME_TASK //data logging task
-#define COLLECTED_DATA_NAMES {"target", "background"}
-#define COLLECTED_DATA_COUNT 2
-#define OVERSAMPLE_FACTOR 250
-#define SAMPLE_INTERVAL_MS 250
-#define DATA_IPC_INTERVAL_MS 500
-#define FAKE_DATA
+#define COLLECTED_DATA_NAMES {"cpu0", "cpu1", "dram_free", "dram_max", "dram_min", "spiram_free", "spiram_max", "spiram_min"}
+#define COLLECTED_DATA_COUNT 8
+#define OVERSAMPLE_FACTOR 1
+#define SAMPLE_INTERVAL_MS 1000
+#define DATA_IPC_INTERVAL_MS 1000
 
 #define FEATURE_MMC_LOGGING
 

@@ -49,7 +49,7 @@ Key Features:
 - Dual mode wifi AP+STA to install pwa and provision wifi
 - mDNS discovery for connecting to all your moxboxes
 - Service worker caching of all assets and data in browser.
-- Activity monitor for device stats and task timings
+- Logging activity monitor for cpu and memory pressure
 
 <br/>
 
@@ -92,14 +92,14 @@ The status bar at the top right of the UI shows you the number of inflight reque
 
 If you've setup:
 ```code
-#define FEATURE_REALTIME_TASK 
-#define COLLECTED_DATA_NAMES {"target", "background"}
-#define COLLECTED_DATA_COUNT 2
-#define OVERSAMPLE_FACTOR 250
-#define SAMPLE_INTERVAL_MS 250
-#define DATA_IPC_INTERVAL_MS 500
+#define FEATURE_REALTIME_TASK //data logging task
+#define COLLECTED_DATA_NAMES {"cpu0", "cpu1", "dram_free", ...}
+#define COLLECTED_DATA_COUNT 8
+#define OVERSAMPLE_FACTOR 1
+#define SAMPLE_INTERVAL_MS 1000
+#define DATA_IPC_INTERVAL_MS 1000
 ```
-In defines.h, you will see a readout of your sensors.  OVERSAMPLE_FACTOR provides averaging functionality within the sampling ISR, which helps with noisy data sources. SAMPLE_INTERVAL_MS and DATA_IPC_INTERVAL_MS are different incase you want to run a control loop at high granularity, but still only report data back to the UI and micro SD logging at a lower frequency so as not to overwhelm the system.
+In defines.h, you will see a readout of your sensors.  OVERSAMPLE_FACTOR provides averaging functionality within the sampling ISR, which helps with noisy data sources. SAMPLE_INTERVAL_MS and DATA_IPC_INTERVAL_MS are different incase you want to run a control loop at high granularity, but still only report data back to the UI and micro SD logging at a lower frequency so as not to overwhelm the system.  By default, MoxBox logs its own cpu and memory pressure in order to help with debugging and provide an example configuration for the logging system. 
 
 If you've set:
 ```code
@@ -220,8 +220,9 @@ curl --progress-bar -X POST --data-binary @build/certs.bin http://moxbox.local/o
 <br/>
 
 ## Todos
-- [ ] data logging demo: memory pressure/idle timings
-- [ ] Decimator should calculate more summary stats than just average
+- [x] data logging demo: memory pressure/idle timings
+- [ ] redo screenshots with logging activity monitor
+- [ ] decimator should calculate more summary stats than just average
 - [ ] mirror serial logging interface over websocket to client
 - [ ] all endpoints available over both http and https
 - [ ] fix ntp
